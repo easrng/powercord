@@ -20,9 +20,11 @@ jobs:
       with:
         node-version: v14.x
     - run: npm i
-    - run: tar czvf ../powercord.tar.gz .
+      name: Install dependencies
+    - run: tar czf ../powercord.tar.gz .
+      name: Make archive
     - run: mv ../powercord.tar.gz .
-    - name: Upload a Build Artifact
+    - name: Upload archive
       uses: actions/upload-artifact@v3.0.0
       with:
         # Artifact name
