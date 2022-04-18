@@ -20,7 +20,13 @@ jobs:
     - run: tar czf ../powercord.tar.gz .
       name: Make archive
     - run: mv ../powercord.tar.gz .
+    - name: Get branch name
+      id: vars
+      run: echo ::set-output name=short_ref::${GITHUB_REF#refs/*/}
     - name: Update release
-      uses: softprops/action-gh-release@v1
+      uses: ncipollo/release-action@v1
       with:
-        files: powercord.tar.gz
+        allowUpdates: true
+        artifacts: powercord.tar.gz
+        draft: true
+        tag: ${{ steps.vars.outputs.short_ref }}
