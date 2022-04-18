@@ -5,9 +5,8 @@ name: Bundle Archives
 
 on:
   push:
-    branches: [ v2 ]
-  pull_request:
-    branches: [ v2 ]
+    tags:
+      - "v*.*.*"
 
 jobs:
   build:
@@ -24,9 +23,8 @@ jobs:
     - run: tar czf ../powercord.tar.gz .
       name: Make archive
     - run: mv ../powercord.tar.gz .
-    - name: Upload archive
-      uses: actions/upload-artifact@v3.0.0
+    - name: Update release
+      uses: softprops/action-gh-release@v1
+      if: startsWith(github.ref, 'refs/tags/')
       with:
-        # Artifact name
-        name: powercord.tar.gz
-        path: powercord.tar.gz
+        files: Release.txt
