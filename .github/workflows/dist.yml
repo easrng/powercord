@@ -28,5 +28,5 @@ jobs:
       with:
         allowUpdates: true
         artifacts: powercord.tar.gz
-        draft: true
+        draft: false
         tag: ${{ steps.vars.outputs.short_ref }}
