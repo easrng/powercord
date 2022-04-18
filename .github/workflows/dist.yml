@@ -5,8 +5,8 @@ name: Bundle Archives
 
 on:
   push:
-    tags:
-      - "v*.*.*"
+    branches:
+      - "v*"
 
 jobs:
   build:
